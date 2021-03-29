@@ -1,10 +1,17 @@
 import React from 'react'
-import './App.css';
 
-function App () {
+import Main from './components/Main'
+import './App.scss';
+
+const App = () => {
   return (
     <div className="App">
-      My Resume Builder
+      <header>
+        <div>
+          RESUME BUILDER
+        </div>
+      </header>
+      <Main />
     </div>
   );
 }
