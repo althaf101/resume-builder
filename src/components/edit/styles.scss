@@ -1,69 +1,76 @@
 .edit-container {
   margin-bottom: 30px;
-  .card {
+  .row {
     margin-top: 20px;
-    .card-header {
-      background: #a2aad0;
-      button {
-        color: white;
-        font-weight: bold;
-      }
-    }
-    .card-body {
-      .field-wrapper {
-        margin-bottom: 20px;
-        input, textarea {
-          border-radius: 5px;
-          border: 1px solid #ced4da;
-          text-indent: 7px;
-          width: 100%;
-          display: block;
-        }
-        input {
-          height: 40px;
-        }
-        span.error {
-          color: red;
+    .card {
+      .card-header {
+        background: #a2aad0;
+        button {
+          color: white;
           font-weight: bold;
         }
       }
-    }
-  }
-  .education-div, .experience-div {
-    ul {
-      list-style-type: none;
-      padding-left: 0px;
-      .name {
-        display: inline-block;
-        width: 66%;
-        margin-right: 4%;
-        vertical-align: top;
-      }
-      .year {
-        display: inline-block;
-        width: 30%;
-        vertical-align: top;
-      }
-      li {
-        background: #e8eaf5;
-        padding: 1% 3%;
-        margin-bottom: 10px;
+      .card-body {
+        .field-wrapper {
+          margin-bottom: 20px;
+          input, textarea {
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            text-indent: 7px;
+            width: 100%;
+            display: block;
+          }
+          input {
+            height: 40px;
+          }
+          span.error {
+            color: red;
+            font-weight: bold;
+          }
+        }
       }
     }
-  }
-  .skills-div {
-    .ReactTags__selected {
-      span {
-        padding: 6px;
-        background: #c3c9e6;
-        border-radius: 5px;
-        margin: 0px 5px;
-        cursor: pointer;
-      }
-      .ReactTags__tagInput {
-        display: inline-block;
+    .education-div, .experience-div {
+      ul {
+        list-style-type: none;
+        padding-left: 0px;
+        .name {
+          display: inline-block;
+          width: 66%;
+          margin-right: 4%;
+          vertical-align: top;
+        }
+        .year {
+          display: inline-block;
+          width: 30%;
+          vertical-align: top;
+        }
+        li {
+          background: #e8eaf5;
+          padding: 1% 3%;
+          margin-bottom: 10px;
+        }
       }
     }
-  
+    .skills-div {
+      .ReactTags__selected {
+        span {
+          padding: 6px;
+          background: #c3c9e6;
+          border-radius: 5px;
+          margin: 0px 5px;
+          cursor: pointer;
+        }
+        .ReactTags__tagInput {
+          display: inline-block;
+        }
+      }
+    }
+    .action-div {
+      float: right;
+      button {
+        margin-left: 20px;
+      }
+    }
   }
 }

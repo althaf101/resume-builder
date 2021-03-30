@@ -1,0 +1,40 @@
+.view-container {
+  margin-bottom: 30px;
+  .top-row {
+    margin-top: 20px;
+    .resume-div {
+      box-shadow: 0 3px 18px 0 rgba(0, 0, 0, 0.5);
+      padding: 25px;
+      .basic-info, .education-info, .experience-info, .skills-info {
+        margin-bottom: 20px;
+        border: 1px dashed black;
+        padding: 15px;
+        label {
+          display: block;
+        }
+        .header-label {
+          font-weight: bold;
+        }
+      }
+      .skills-info {
+        span {
+          margin: 0px 5px;
+          background: lightgray;
+          padding: 6px;
+          border-radius: 5px;
+        }
+      }
+    }
+    .action-div {
+      float: right;
+      button {
+        margin-left: 20px;
+      }
+    }
+  }
+  @media print {
+    .action-div {
+      display: none;
+    }
+  }
+}

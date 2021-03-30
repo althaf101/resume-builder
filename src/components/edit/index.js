@@ -1,13 +1,14 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import { Field, FieldArray, reduxForm } from 'redux-form'
+import { Field, FieldArray, reduxForm, reset } from 'redux-form'
 import {WithContext as ReactTags} from 'react-tag-input';
+import PropTypes from 'prop-types';
 
 import {required, number, email} from '../../utils/validations'
 import './styles.scss'
@@ -63,7 +64,7 @@ const renderEducation = ({ fields }) => {
         </li>
       ))}
       <li>
-        <button className="btn btn-success" type="button" onClick={() => fields.push({})}>Add Education</button>
+        <Button variant="info" type="button" onClick={() => fields.push({})}>Add Education</Button>
       </li>
   </ul>
   );
@@ -108,7 +109,7 @@ const renderExperience = ({ fields }) => {
         </li>
       ))}
       <li>
-        <button className="btn btn-success" type="button" onClick={() => fields.push({})}>Add Experience</button>
+        <Button variant="info" type="button" onClick={() => fields.push({})}>Add Experience</Button>
       </li>
   </ul>
   );
@@ -122,12 +123,12 @@ const renderSkills = ({ input: { onChange }}) => {
   };
 
   const handleAdd = e => {
-    console.log("handleAdd", skills, e)
     onChange([...(skills?.length ? skills: []), {id: (skills?.length || 0 ) + 1, text: e}]);
   };
 
   return (
     <ReactTags
+      placeholder="Add new skill"
       tags={skills || []}
       // suggestions={suggestions} can be added here
       handleDelete={handleDelete}
@@ -136,10 +137,26 @@ const renderSkills = ({ input: { onChange }}) => {
   );
 };
 
-const Edit = () => {
-  const state = useSelector(state => state)
-  console.log(state)
+const Edit = (props) => {
+  const dispatch = useDispatch()
+  const form = useSelector(state=>state.form)
+  const {
+    profile: {
+      syncErrors: errors,
+      values: {
+        skills
+      } = {}
+    } = {}
+  } = form;
 
+  const viewResume = () => {
+    props.history.push("/view")
+  };
+
+  const resetForm = () => {
+    dispatch(reset("profile"))
+  };
+ 
   return (
     <Container className="edit-container">
       <Row>
@@ -270,8 +287,21 @@ const Edit = () => {
           </div>
         </Col>
       </Row>
+      <Row>
+        <Col>
+          <div className="action-div"> 
+            <Button variant="danger" onClick={resetForm}>Reset</Button>
+            <Button title="Fill all fields to enable preview" variant="info" onClick={viewResume} disabled={errors || !skills?.length }>View My Resume</Button>
+          </div>
+        </Col>
+      </Row>
     </Container>
   )
 }
 
-export default reduxForm({form: 'profile'})(Edit);
+Edit.propTypes = {
+  history: PropTypes.object,
+  reset: PropTypes.func
+};
+
+export default reduxForm({form: 'profile', destroyOnUnmount: false})(Edit);
